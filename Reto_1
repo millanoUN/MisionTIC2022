@@ -1,0 +1,33 @@
+from math import ceil
+area=float(input("--> Ingrese el área de la zona en m2: "))
+num_antena=int(input("--> Ingrese la cantidad de antenas existentes: "))
+tipo_antena=input("""--> Ingrese el tipo de nueva  antena a instalar: 
+    
+    Rango Antena Tipo a: 35600 m2
+    Rango Antena Tipo b: 6800 m2
+    Rango Antena Tipo c: 59300 m2
+    Rango Antena Tipo d: 24200 m2
+    Rango Antena Tipo e: 7400 m2
+    
+    """)
+
+if num_antena<0:
+    print("error en los datos") #Cantidad de antenas existentes debe ser mayor o igual a 0.
+else:
+    if tipo_antena != "a" and tipo_antena !=  "b" and tipo_antena != "c" and tipo_antena != "d" and tipo_antena != "e":
+        print("error en los datos") #Tipo de antena a ingresar debe estar entre los anteriores mencionados.
+    else:
+        #Nuevas Antenas y respectivos rangos=rango--> a = 6800, b = 35600, c = 59300, d = 24200, e = 7400
+        if tipo_antena == "a": alcance_antena=35600
+        elif tipo_antena == "b": alcance_antena=6800
+        elif tipo_antena == "c": alcance_antena=59300
+        elif tipo_antena== "d": alcance_antena=24200
+        elif tipo_antena == "e": alcance_antena=7400   
+
+        alcance_previo=18400 #Alcance de antenas previamente instaladas.
+        cantidad_nueva=(area - (num_antena * alcance_previo)) / alcance_antena
+
+        if cantidad_nueva<0: 
+            cantidad_nueva = 0 #Si la cantidad de antenas a instalar es negativa, se debe mostrar el valor 0.
+
+        print("La cantidad de antenas nuevas a instalar debe ser",(ceil(cantidad_nueva)),"de tipo",tipo_antena+".")
